@@ -5,7 +5,8 @@ import java.nio.file.attribute.FileTime;
 public class FileInfo {
 
     private String name;
-    private long size;
+    private long sizeByte;
+    private long sizeKB;
     private FileTime creationDate;
     private FileTime lastModify;
 
@@ -13,11 +14,20 @@ public class FileInfo {
     public FileInfo() {
     }
 
-    public FileInfo(String name, int size, FileTime creationDate, FileTime lastModify) {
+    public FileInfo(String name, long sizeByte, long sizeKB, FileTime creationDate, FileTime lastModify) {
         this.name = name;
-        this.size = size;
+        this.sizeByte = sizeByte;
+        this.sizeKB = sizeKB;
         this.creationDate = creationDate;
         this.lastModify = lastModify;
+    }
+
+    public long getSizeKB() {
+        return sizeKB;
+    }
+
+    public void setSizeKB(long sizeKB) {
+        this.sizeKB = sizeKB;
     }
 
     public String getName() {
@@ -28,12 +38,12 @@ public class FileInfo {
         this.name = name;
     }
 
-    public long getSize() {
-        return size;
+    public long getSizeByte() {
+        return sizeByte;
     }
 
-    public void setSize(long size) {
-        this.size = size;
+    public void setSizeByte(long sizeByte) {
+        this.sizeByte = sizeByte;
     }
 
     public FileTime getCreationDate() {
@@ -55,7 +65,8 @@ public class FileInfo {
     @Override
     public String toString() {
         return name + ',' +
-                size + ',' +
+                sizeByte + ',' +
+                sizeKB + ',' +
                 creationDate + ',' +
                 lastModify;
     }
