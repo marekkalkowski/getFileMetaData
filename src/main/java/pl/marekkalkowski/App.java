@@ -14,9 +14,8 @@ public class App {
     public static void main(String[] args) {
 
         String pathToFolder = "\\\\10.16.5.14\\e$\\STORAGE\\21";
-        List<String> fileInfos = new ArrayList<>();
+        List<String> fileInfos;
         String outFileName = "filename21.txt";
-
         PrintWriter out = null;
 
         try {
@@ -47,7 +46,7 @@ public class App {
             fileInfo.setCreationDate(attr.creationTime());
             fileInfo.setName(cleanFileName(path.getFileName().toString()));
             fileInfo.setSizeByte(attr.size());
-            fileInfo.setSizeKB(attr.size()/1024);
+            fileInfo.setSizeKB(attr.size() / 1024);
             fileInfo.setLastModify(attr.lastModifiedTime());
 
         } catch (IOException e) {
@@ -57,11 +56,12 @@ public class App {
     }
 
     private static String cleanFileName(String fileName) {
-int  i = 0;
+        int i = 0;
         int dotIndex = fileName.indexOf(".");
         if (dotIndex >= 0) {
             return fileName.substring(0, dotIndex);
-        }else {i++;
+        } else {
+            i++;
             System.out.println(i + ' ' + fileName);
             return fileName;
         }
