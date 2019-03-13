@@ -1,8 +1,6 @@
 package pl.marekkalkowski;
 
 import java.nio.file.attribute.FileTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FileInfo {
 
@@ -10,7 +8,6 @@ public class FileInfo {
     private long size;
     private FileTime creationDate;
     private FileTime lastModify;
-
 
 
     public FileInfo() {
