@@ -1,20 +1,18 @@
 package pl.marekkalkowski;
 
-import java.nio.file.attribute.FileTime;
-
 public class FileInfo {
 
     private String name;
     private long sizeByte;
     private long sizeKB;
-    private FileTime creationDate;
-    private FileTime lastModify;
+    private String creationDate;
+    private String lastModify;
 
 
     public FileInfo() {
     }
 
-    public FileInfo(String name, long sizeByte, long sizeKB, FileTime creationDate, FileTime lastModify) {
+    public FileInfo(String name, long sizeByte, long sizeKB, String creationDate, String lastModify) {
         this.name = name;
         this.sizeByte = sizeByte;
         this.sizeKB = sizeKB;
@@ -46,19 +44,19 @@ public class FileInfo {
         this.sizeByte = sizeByte;
     }
 
-    public FileTime getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(FileTime creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
-    public FileTime getLastModify() {
+    public String getLastModify() {
         return lastModify;
     }
 
-    public void setLastModify(FileTime lastModify) {
+    public void setLastModify(String lastModify) {
         this.lastModify = lastModify;
     }
 

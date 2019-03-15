@@ -1,22 +1,31 @@
 package pl.marekkalkowski;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) {
 
-        String pathToFolder = "\\\\10.16.5.14\\e$\\STORAGE\\21";
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileInputStream(FileReaderProperties.APP_CONFIG_PATH));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String catalogNumber = properties.getProperty("dirName");
+        String pathToFolder = properties.getProperty("pathToDir") + catalogNumber;
         List<String> fileInfos;
-        String outFileName = "filename21.txt";
+        String outFileName = "filename"+ catalogNumber + ".txt";
         PrintWriter out = null;
+
 
         try {
             out = new PrintWriter(outFileName);
@@ -43,11 +52,11 @@ public class App {
         FileInfo fileInfo = new FileInfo();
         try {
             BasicFileAttributes attr = Files.readAttributes(path, BasicFileAttributes.class);
-            fileInfo.setCreationDate(attr.creationTime());
+            fileInfo.setCreationDate(cleanFileDateInfo(attr.creationTime().toString()));
             fileInfo.setName(cleanFileName(path.getFileName().toString()));
             fileInfo.setSizeByte(attr.size());
             fileInfo.setSizeKB(attr.size() / 1024);
-            fileInfo.setLastModify(attr.lastModifiedTime());
+            fileInfo.setLastModify(cleanFileDateInfo(attr.lastModifiedTime().toString()));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,6 +73,18 @@ public class App {
             i++;
             System.out.println(i + ' ' + fileName);
             return fileName;
+        }
+    }
+
+    private static String cleanFileDateInfo(String fileTime) {
+        int i = 0;
+        int dotIndex = fileTime.indexOf("T");
+        if (dotIndex >= 0) {
+            return fileTime.substring(0, dotIndex);
+        } else {
+            i++;
+            System.out.println(i + ' ' + fileTime);
+            return fileTime;
         }
     }
 }
