@@ -12,16 +12,16 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.*;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Properties;
-import java.util.TimeZone;
 
 public class App {
     public static final Logger LOG = LogManager.getLogger(App.class);
 
     public static void main(String[] args) {
-
-        TimeZone.setDefault(TimeZone.getTimeZone("Europe/Warsaw"));
+        
         Instant start = Instant.now();
         LOG.info("Czas rozpoczęcia działania aplikacji: " + start);
         Properties properties = new Properties();
@@ -63,7 +63,7 @@ public class App {
         }
         Instant end = Instant.now();
         LOG.info("Czas zakończenia działania aplikacji: " + end);
-        LOG.info("Czas wykonania:" +  Duration.between(start,end));
+        LOG.info("Czas wykonania:" + Duration.between(start, end));
     }
 
     private static FileInfo getFileInfo(Path path) {

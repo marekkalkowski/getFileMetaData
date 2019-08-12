@@ -29,7 +29,7 @@ public class DatabaseConnection {
             String url = String.format("jdbc:sqlserver://%s:52313;database=%s;user=%s;password=%s;integratedSecurity=true;"
                     , hostName, dbName, dbUser, password);
             LOG.info("Url gotowy");
-            LOG.debug("URl:{}",url);
+            LOG.debug("URl:{}", url);
             LOG.info("Łączenie za bazą danych  .... ");
             connection = DriverManager.getConnection(url);
             LOG.info(connection.getClientInfo());
